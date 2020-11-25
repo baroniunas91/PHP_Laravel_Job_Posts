@@ -19,14 +19,33 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $areas = Area::orderBy('title')->get();
-        $posts = Post::all();
+
+        $area_id = $search = '';
+
+        if($request->area_id) {
+            $area_id = (int) $request->area_id;
+        }
+        if($request->search) {
+            $search = $request->search;
+        }
+
+        if($search) {
+            $posts = $area_id ? 
+            Post::where('area_id', $area_id)->where('title', 'LIKE', "%".$search."%")->orderBy('title')->get() : 
+            Post::where('title', 'LIKE', "%".$search."%")->orderBy('title')->get();
+        } else {
+            $posts = $area_id ? 
+            Post::where('area_id', $area_id)->orderBy('title')->get() : 
+            Post::orderBy('title')->get();
+        }
+
         foreach($posts as $post) {
             $post->postAreaName = $post->postArea->title;
         }
-        return view('post.index', compact('posts', 'areas')); 
+        return view('post.index', compact('posts', 'areas', 'area_id', 'search')); 
     }
 
     /**
@@ -52,8 +71,8 @@ class PostController extends Controller
         [
             'title' => ['required', 'min:3', 'max:128'],
             'description' => ['required', 'not_regex:/<p><br><\/p>/i'],
-            'salary' => ['required', 'min:3', 'max:128'],
-            'area_id' => ['required', 'integer', 'min:1', 'max:100']
+            'salary' => ['required', 'integer', 'min:1'],
+            'area_id' => ['required', 'integer', 'min:1', 'max:1000']
         ],
         [
             'description.not_regex' => 'Post description field should not be empty!',
@@ -133,8 +152,8 @@ class PostController extends Controller
         [
             'title' => ['required', 'min:3', 'max:128'],
             'description' => ['required', 'not_regex:/<p><br><\/p>/i'],
-            'salary' => ['required', 'min:3', 'max:128'],
-            'area_id' => ['required', 'integer', 'min:1', 'max:100']
+            'salary' => ['required', 'integer', 'min:1'],
+            'area_id' => ['required', 'integer', 'min:1', 'max:1000']
         ],
         [
             'description.not_regex' => 'Post description field should not be empty!',

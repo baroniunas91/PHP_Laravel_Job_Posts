@@ -8,6 +8,7 @@ Edit post
 <h2 class="page-title">Edit post</h2>
 <div class="create-item">
     <form class="create_form" method="POST" action="{{route('post.update', $post)}}" enctype="multipart/form-data">
+        {{method_field('PUT')}}
         <div class="input">
             <label>Title</label>
             <input type="text" name="title" value="{{old('title', $post->title)}}" placeholder="Enter post title">
@@ -28,6 +29,10 @@ Edit post
                     <option value="{{$area->id}}" @if($area->id == old('area_id', $post->area_id)) selected @endif>{{$area->title}}</option>
                 @endforeach
             </select>
+        </div>
+        <div class="input">
+            <label>Photo</label>
+            <input class="file" type="file" name="photo">
         </div>
         @csrf
         <button class= "button" type="submit">EDIT</button>

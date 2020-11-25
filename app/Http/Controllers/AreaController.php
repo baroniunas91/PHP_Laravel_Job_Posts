@@ -160,7 +160,7 @@ class AreaController extends Controller
      */
     public function destroy(Area $area)
     {
-        if($area->areaTasks->count()){
+        if($area->areaPosts->count()){
             return redirect()->route('area.index')->with('info_message', 'You can\'t delete area because it have a posts'); 
         }
         $area->delete();

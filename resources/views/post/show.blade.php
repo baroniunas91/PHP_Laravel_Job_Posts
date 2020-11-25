@@ -54,7 +54,7 @@
     <div class="book-section">
         <p><span>Post title:</span> {{$post->title}}</p>
         <p><span>Post description:</span> {!!$post->description!!}</p>
-        <p><span>Post salary:</span> {{$post->salary}}</p>
+        <p><span>Post salary:</span> {{$post->salary}} Eur</p>
         <p><span>Post area:</span> {{$post->postAreaTitle}}</p>
     </div>
 </div>

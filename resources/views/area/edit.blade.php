@@ -8,6 +8,7 @@ Edit area
 <h2 class="page-title">Edit area</h2>
 <div class="create-item">
     <form method="POST" action="{{route('area.update', $area)}}" enctype="multipart/form-data">
+        {{method_field('PUT')}}
         <div class="input">
             <label>Title</label>
             <input type="text" name="title" value="{{old('title', $area->title)}}">

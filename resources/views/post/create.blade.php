@@ -29,6 +29,10 @@ Create new post
                 @endforeach
             </select>
         </div>
+        <div class="input">
+            <label>Photo</label>
+            <input class="file" type="file" name="photo">
+        </div>
         @csrf
         <button class= "button" type="submit">ADD</button>
     </form>

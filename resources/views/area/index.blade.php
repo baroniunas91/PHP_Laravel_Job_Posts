@@ -29,6 +29,7 @@ Areas list
                     <a class="button" href="{{route('area.show', $area)}}">Show</a>
                 </div>
                 <form method="POST" action="{{route('area.destroy', $area)}}">
+                    {{method_field('DELETE')}}
                     <button class="button" type="submit">DELETE</button>
                     @csrf
                 </form>

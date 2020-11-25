@@ -38,4 +38,5 @@ Areas list
         @endforeach
     </ul>
 </div>
+<div class="pagination">{{$areas->links()}}</div>
 @endsection

@@ -34,12 +34,12 @@ class PostController extends Controller
 
         if($search) {
             $posts = $area_id ? 
-            Post::where('area_id', $area_id)->where('title', 'LIKE', "%".$search."%")->orderBy('title')->get() : 
-            Post::where('title', 'LIKE', "%".$search."%")->orderBy('title')->get();
+            Post::where('area_id', $area_id)->where('title', 'LIKE', "%".$search."%")->orderBy('title')->paginate(5) : 
+            Post::where('title', 'LIKE', "%".$search."%")->orderBy('title')->paginate(5);
         } else {
             $posts = $area_id ? 
-            Post::where('area_id', $area_id)->orderBy('title')->get() : 
-            Post::orderBy('title')->get();
+            Post::where('area_id', $area_id)->orderBy('title')->paginate(5) : 
+            Post::orderBy('title')->paginate(5);
         }
 
         foreach($posts as $post) {

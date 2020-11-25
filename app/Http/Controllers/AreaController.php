@@ -20,7 +20,7 @@ class AreaController extends Controller
      */
     public function index()
     {
-        $areas = Area::all();
+        $areas = Area::paginate(3);
 
         foreach($areas as $area) {
             $area->postsCount = $area->areaPosts->count();

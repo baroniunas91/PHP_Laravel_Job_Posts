@@ -211,6 +211,23 @@ body * {
   border-radius: 3px;
 }
 
+.index-container .sort form .search {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.index-container .sort form .search label {
+  color: grey;
+}
+
+.index-container .sort form .search input {
+  padding-left: 5px;
+  height: 23px;
+  border: 1px solid grey;
+  border-radius: 3px;
+}
+
 .index-container .sort form .sort-content {
   margin-right: 30px;
 }
@@ -236,7 +253,7 @@ body * {
 }
 
 .index-container .sort form .submit {
-  align-self: center;
+  align-self: flex-end;
   margin-left: 20px;
 }
 
@@ -251,7 +268,7 @@ body * {
 .index-container .sort .reset a {
   display: inline-block;
   padding: 5px 16.5px;
-  margin-top: 8px;
+  margin-top: 15px;
 }
 
 .index-container .items-list {
@@ -322,6 +339,12 @@ body * {
 .index-container .items-list .row .buttons form .button:hover {
   transition: 0.5s;
   background-color: darkred;
+}
+
+.pagination nav .hidden {
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .messages .success .success-message {
@@ -413,6 +436,10 @@ body * {
 
   .index-container .sort form {
     flex-direction: column;
+  }
+
+  .index-container .sort form .search {
+    margin-bottom: 20px;
   }
 
   .index-container .sort form .sort-content {

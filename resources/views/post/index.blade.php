@@ -21,7 +21,7 @@ Posts list
         </select>
       </div>
       <div class="search">
-        <label >Search</label>
+        <label>Search:</label>
         <input type="text" name="search" value = "@if($search) {{$search}} @endif" placeholder="Enter search term">
       </div>
         <div class="submit">
@@ -60,4 +60,5 @@ Posts list
       @endforeach
   </ul>
 </div>
+<div class="pagination">{{$posts->links()}}</div>
 @endsection

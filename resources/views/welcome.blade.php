@@ -22,10 +22,10 @@
     </head>
     <body class="antialiased">
             <div class="mx-auto text-center">
+                <div class="background"></div>
                 <div class="welcome">
                     <div class="welcome-section">
                         <h1>PLEASE REGISTER AND LOGIN</h1>
-                        <h1>Author: Edgaras Baroniūnas</h1>
                         <a class="button" href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
                         <a class="button" href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
                     </div>

@@ -7,7 +7,7 @@ body * {
 }
 
 .welcome {
-  background: url("https://images.unsplash.com/photo-1513530534585-c7b1394c6d51?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80");
+  background: url("https://www.vz.lt/api/socialimage/VZ/20201030/ARTICLE/201039962/AR/img.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -27,13 +27,23 @@ body * {
 }
 
 .welcome .welcome-section h1 {
-  color: black;
+  color: white;
   margin-bottom: 20px;
 }
 
 .welcome .welcome-section .button {
   box-shadow: 5px 5px 10px black;
   margin: 0 10px;
+}
+
+.background {
+  background: #0054a6;
+  background: linear-gradient(180deg, rgba(0, 84, 166, 0.7952364804) 0%, rgba(130, 130, 231, 0.5424274916) 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .button {
@@ -50,13 +60,13 @@ body * {
 
 .button:hover {
   transition: 0.5s;
-  background: darkblue;
+  background: #0054a6;
 }
 
 .navbar {
   display: inline-block;
   width: 100%;
-  background-color: #eee;
+  background-color: #0054a6;
   height: 65px;
   font-size: 16px;
   box-shadow: 5px 0px 18px #888888;
@@ -84,7 +94,7 @@ body * {
 .navbar .navbar-content .left .menu-option {
   margin-right: 20px;
   text-transform: uppercase;
-  color: gray;
+  color: white;
 }
 
 .navbar .navbar-content .left .menu-option:hover {
@@ -97,14 +107,33 @@ body * {
   display: flex;
 }
 
+.navbar .navbar-content .right #logout-form button {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  box-shadow: none;
+}
+
+.navbar .navbar-content .right #logout-form .button:hover {
+  transition: 0.5s;
+  background-color: black;
+  color: white;
+}
+
 .navbar .navbar-content .right .language {
   display: flex;
   justify-content: center;
 }
 
 .navbar .navbar-content .right .language a {
+  color: white;
   align-self: center;
   padding-right: 5px;
+}
+
+.navbar .navbar-content .right .language a:hover {
+  transition: 0.5s;
+  color: black;
 }
 
 .navbar .navbar-content .right .language .en {
@@ -127,7 +156,7 @@ body * {
 .page-title {
   font-size: 30px;
   text-align: center;
-  color: grey;
+  color: black;
   text-transform: uppercase;
   margin-top: 20px;
 }
@@ -186,20 +215,20 @@ body * {
 
 .create-item form .button {
   margin-top: 20px;
-  background-color: green;
+  background-color: #0054a6;
   width: 30%;
   align-self: center;
 }
 
 .create-item form .button:hover {
   transition: 0.5s;
-  background-color: darkgreen;
+  background-color: black;
 }
 
 .index-container .page-title {
   font-size: 30px;
   text-align: center;
-  color: grey;
+  color: black;
   text-transform: uppercase;
   margin-top: 20px;
 }
@@ -227,6 +256,7 @@ body * {
 .index-container .sort form .filter select {
   border: 1px solid grey;
   border-radius: 3px;
+  height: 23px;
 }
 
 .index-container .sort form .search {
@@ -308,19 +338,20 @@ body * {
 
 .index-container .items-list .row .user-info .title {
   font-size: 18px;
-  color: gray;
+  color: black;
   padding-right: 10px;
   width: 200px;
 }
 
 .index-container .items-list .row .user-info .title span {
+  color: gray;
   font-style: italic;
   font-size: 12px;
   display: flex;
   flex-direction: column;
 }
 
-.index-container .items-list .row .user-info .title:hover {
+.index-container .items-list .row .user-info .title:hover span {
   transition: 0.5s;
   color: black;
 }
@@ -352,7 +383,7 @@ body * {
 }
 
 .index-container .items-list .row .buttons form .button {
-  background-color: red;
+  background-color: #0054a6;
   width: 78px;
 }
 
@@ -365,6 +396,10 @@ body * {
   flex-direction: column;
   justify-content: center;
   margin-bottom: 20px;
+}
+
+.pagination nav .hidden div p {
+  display: none;
 }
 
 .messages .success .success-message {
@@ -413,7 +448,7 @@ body * {
   }
 }
 
-@media (max-width: 830px) {
+@media (max-width: 860px) {
   .navbar {
     height: 80px;
   }
@@ -534,6 +569,10 @@ body * {
 
   .navbar .navbar-content .right {
     flex-direction: column;
+  }
+
+  .navbar .navbar-content .right .language {
+    padding-bottom: 5px;
   }
 
   .navbar .navbar-content .right .language .lt {

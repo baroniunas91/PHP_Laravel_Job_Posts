@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
 
         $faker = Faker\Factory::create();
         // Sukuriam fake areas
-        $areas =  array('Information Technology', 'Human Resources', 'Engineering/Mechanics', 'Sales', 'Marketing');
+        $areas =  array('Information Technology', 'Human Resources', 'Engineering', 'Sales', 'Marketing');
         foreach ($areas as $key => $area) {
             DB::table('areas')->insert([
                 'title' => $area,

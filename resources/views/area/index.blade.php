@@ -15,7 +15,7 @@
             <div class="user-info">
                 <a class="title" href="{{route('area.show', compact('area', 'lang'))}}">{{$area->title}}<span>{{__('area_index.posts_count')}} {{$area->postsCount}}</span>
                 @foreach($area->postsList as $post)
-                <span>{{__('area_index.posts_title')}} {{$post->title}}</span>
+                <span>{{$post->title}}</span>
                 @endforeach
                 </a>
                 @if($area->photo) 

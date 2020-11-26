@@ -7,7 +7,7 @@ body * {
 }
 
 .welcome {
-    background: url('https://images.unsplash.com/photo-1513530534585-c7b1394c6d51?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80');
+    background: url('https://www.vz.lt/api/socialimage/VZ/20201030/ARTICLE/201039962/AR/img.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -23,7 +23,7 @@ body * {
         left: 50%;
         transform: translate(-50%, -50%);
         h1 {
-            color: black;
+            color: white;
             margin-bottom: 20px;
         }
         .button {
@@ -32,6 +32,17 @@ body * {
         }
     }
 }
+
+.background {
+    background: rgb(0,84,166);
+    background: linear-gradient(180deg, rgba(0,84,166,0.7952364803699965) 0%, rgba(130,130,231,0.5424274916059515) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 
 .button {
     cursor: pointer;
@@ -46,13 +57,13 @@ body * {
 }
 .button:hover {
     transition: 0.5s;
-    background: darkblue;
+    background: #0054a6;
 }
 
 .navbar {
     display: inline-block;
     width: 100%;
-    background-color: #eee;
+    background-color: #0054a6;
     height: 65px;
     font-size: 16px;
     box-shadow: 5px 0px 18px #888888;
@@ -72,7 +83,7 @@ body * {
             .menu-option {
                 margin-right: 20px;
                 text-transform: uppercase;
-                color: gray;
+                color: white;
             }
             .menu-option:hover {
                 transition: 0.5s;
@@ -82,12 +93,30 @@ body * {
         }
         .right {
             display: flex;
+            #logout-form {
+                button {
+                    background-color: white;
+                    color: black;
+                    font-weight: bold;
+                    box-shadow: none;
+                }
+                .button:hover {
+                    transition: 0.5s;
+                    background-color: black;
+                    color: white;
+                }
+            }
             .language{
                 display: flex;
                 justify-content: center;
                 a {
+                    color: white;
                     align-self: center;
                     padding-right: 5px;
+                }
+                a:hover {
+                    transition: 0.5s;
+                    color: black;
                 }
                 .en {
                     border-right: 1px solid #ccc;
@@ -112,7 +141,7 @@ body * {
 .page-title {
     font-size: 30px;
     text-align: center;
-    color: grey;
+    color: black;
     text-transform: uppercase;
     margin-top: 20px;
 }
@@ -159,13 +188,13 @@ body * {
         }
         .button {
             margin-top: 20px;
-            background-color: green;
+            background-color: #0054a6;
             width: 30%;
             align-self: center;
         }
         .button:hover {
             transition: 0.5s;
-            background-color: darkgreen;
+            background-color: black;
         }
     }
 }
@@ -174,7 +203,7 @@ body * {
     .page-title {
         font-size: 30px;
         text-align: center;
-        color: grey;
+        color: black;
         text-transform: uppercase;
         margin-top: 20px;
     }
@@ -194,6 +223,7 @@ body * {
                 select {
                     border: 1px solid grey;
                     border-radius: 3px;
+                    height: 23px;
                 }
             }
             .search {
@@ -260,10 +290,11 @@ body * {
                 display: flex;
                 .title {
                     font-size: 18px;
-                    color: gray;
+                    color: black;
                     padding-right: 10px;
                     width: 200px;
                     span {
+                        color: gray;
                         font-style: italic;
                         font-size: 12px;
                         display: flex;
@@ -271,8 +302,10 @@ body * {
                     }
                 }
                 .title:hover {
-                    transition: 0.5s;
-                    color: black;
+                    span {
+                        transition: 0.5s;
+                        color: black;
+                    }
                 }
                 .photo {
                     align-self: center;
@@ -296,7 +329,7 @@ body * {
                 }
                 form {
                     .button {
-                        background-color: red;
+                        background-color: #0054a6;
                         width: 78px;
                     }
                     .button:hover {
@@ -314,6 +347,9 @@ body * {
             flex-direction: column;
             justify-content: center;
             margin-bottom: 20px;
+            div p {
+                display: none;
+            }
         }
     }
 }
@@ -370,7 +406,7 @@ body * {
     }
 }
 
-@media (max-width: 830px) {
+@media (max-width: 860px) {
     .navbar {
         height: 80px;
         .navbar-content {
@@ -483,6 +519,7 @@ body * {
             .right {
                 flex-direction: column;
                 .language{
+                    padding-bottom: 5px;
                     .lt {
                         padding: 0 0px 0 5px;
                     }

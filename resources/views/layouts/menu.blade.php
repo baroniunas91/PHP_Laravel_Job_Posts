@@ -1,19 +1,22 @@
 <div class="navbar-content">
     <div class="left">
         <div class="create">
-            <a class ="menu-option" href="{{route('area.create')}}">Create new job area</a>
-            <a class ="menu-option" href="{{route('post.create')}}">Create new post</a>
+            <a class ="menu-option" href="{{route('area.create', $lang)}}">{{__('navbar.create_area')}}</a>
+            <a class ="menu-option" href="{{route('post.create', $lang)}}">{{__('navbar.create_post')}}</a>
         </div>
         <div class="list">
-            <a class ="menu-option" href="{{route('area.index')}}">Job areas list</a>
-            <a class ="menu-option" href="{{route('post.index')}}">Posts list</a>
+            <a class ="menu-option" href="{{route('area.index', $lang)}}">{{__('navbar.areas_list')}}</a>
+            <a class ="menu-option" href="{{route('post.index', $lang)}}">{{__('navbar.posts_list')}}</a>
         </div>
     </div>
     <div class="right">
-        <h2 class="user">{{Auth::user()->name}}</h2>
+        <div class="language">
+            <a class="en" href="{{route('post.index', 'en')}}">EN</a>
+            <a class="lt" href="{{route('post.index', 'lt')}}">LT</a>
+        </div>
         <form id="logout-form" action="{{ route('logout') }}" method="POST">
             @csrf
-            <button class="button" type="submit">Logout</button>
+            <button class="button" type="submit">{{__('navbar.logout')}}</button>
         </form>
     </div>
 </div>

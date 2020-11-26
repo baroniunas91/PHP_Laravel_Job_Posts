@@ -3,7 +3,7 @@ body * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .welcome {
@@ -95,6 +95,24 @@ body * {
 
 .navbar .navbar-content .right {
   display: flex;
+}
+
+.navbar .navbar-content .right .language {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar .navbar-content .right .language a {
+  align-self: center;
+  padding-right: 5px;
+}
+
+.navbar .navbar-content .right .language .en {
+  border-right: 1px solid #ccc;
+}
+
+.navbar .navbar-content .right .language .lt {
+  padding: 0 20px 0 5px;
 }
 
 .navbar .navbar-content .right .user {
@@ -258,7 +276,7 @@ body * {
 }
 
 .index-container .sort form .submit button {
-  width: 70px;
+  width: 105px;
 }
 
 .index-container .sort .reset {
@@ -269,6 +287,7 @@ body * {
   display: inline-block;
   padding: 5px 16.5px;
   margin-top: 15px;
+  width: 105px;
 }
 
 .index-container .items-list {
@@ -322,18 +341,19 @@ body * {
   align-self: center;
 }
 
-.index-container .items-list .row .buttons .show {
-  width: 67px;
+.index-container .items-list .row .buttons .edit {
+  width: 78px;
   margin-bottom: 10px;
 }
 
-.index-container .items-list .row .buttons .show a {
+.index-container .items-list .row .buttons .edit a {
   display: inline-block;
   width: 100%;
 }
 
 .index-container .items-list .row .buttons form .button {
   background-color: red;
+  width: 78px;
 }
 
 .index-container .items-list .row .buttons form .button:hover {
@@ -429,7 +449,7 @@ body * {
   }
 }
 
-@media (max-width: 690px) {
+@media (max-width: 740px) {
   .index-container .sort {
     flex-direction: column;
   }
@@ -438,8 +458,13 @@ body * {
     flex-direction: column;
   }
 
+  .index-container .sort form .filter {
+    width: 70%;
+  }
+
   .index-container .sort form .search {
     margin-bottom: 20px;
+    width: 70%;
   }
 
   .index-container .sort form .sort-content {
@@ -460,7 +485,7 @@ body * {
   }
 }
 
-@media (max-width: 615px) {
+@media (max-width: 630px) {
   .navbar {
     height: 130px;
   }
@@ -498,7 +523,7 @@ body * {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .navbar {
     height: 92px;
   }
@@ -507,8 +532,24 @@ body * {
     padding: 10px 20px;
   }
 
+  .navbar .navbar-content .right {
+    flex-direction: column;
+  }
+
+  .navbar .navbar-content .right .language .lt {
+    padding: 0 0px 0 5px;
+  }
+
   .menu-option {
     font-size: 12px;
+  }
+
+  .index-container .sort form .filter {
+    width: 100%;
+  }
+
+  .index-container .sort form .search {
+    width: 100%;
   }
 }
 

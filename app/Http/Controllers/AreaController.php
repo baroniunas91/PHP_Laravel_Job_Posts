@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\Models\Area;
 use Illuminate\Http\Request;
 use Validator;
@@ -9,24 +10,28 @@ use PDF;
 
 class AreaController extends Controller
 {
-    public function __construct()
+    public function __construct(Request $request)
     {
         $this->middleware('auth');
+        $lang = $request->lang;
+        $this->middleware("setLanguage:$lang");
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $lang = $request->lang;
+
         $areas = Area::paginate(3);
 
         foreach($areas as $area) {
             $area->postsCount = $area->areaPosts->count();
             $area->postsList = $area->areaPosts;
         }
-        return view('area.index', compact('areas'));
+        return view('area.index', compact('areas', 'lang'));
     }
 
     /**
@@ -34,9 +39,11 @@ class AreaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('area.create');
+        $lang = $request->lang;
+
+        return view('area.create', compact('lang'));
     }
 
     /**
@@ -47,6 +54,8 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
+        $lang = $request->lang;
+
         $validator = Validator::make($request->all(),
         [
             'title' => ['required', 'string', 'min:3', 'max:128'],
@@ -77,7 +86,7 @@ class AreaController extends Controller
         }
  
         $area->save();
-        return redirect()->route('area.index')->with('success_message', 'You are successfully add new area: ' . $area->title);
+        return redirect()->route('area.index', $lang)->with('success_message', 'You are successfully add new area: ' . $area->title);
     }
 
     /**
@@ -86,10 +95,12 @@ class AreaController extends Controller
      * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function show(Area $area)
+    public function show(Area $area, Request $request)
     {
+        $lang = $request->lang;
+
         $area->postsList = $area->areaPosts;
-        return view('area.show', compact('area'));
+        return view('area.show', compact('area', 'lang'));
     }
 
     /**
@@ -99,17 +110,21 @@ class AreaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function pdf(Area $area)
+    public function pdf(Area $area, Request $request)
     {
+        $lang = $request->lang;
+
         $area->postsList = $area->areaPosts;
-        $pdf = PDF::loadView('area.pdf', compact('area'));
+        $pdf = PDF::loadView('area.pdf', compact('area', 'lang'));
         // failo vardas
         return $pdf->download($area->title.'-'.$area->id.'.pdf');
     }
     
-    public function edit(Area $area)
+    public function edit(Area $area, Request $request)
     {
-        return view('area.edit', compact('area'));
+        $lang = $request->lang;
+
+        return view('area.edit', compact('area', 'lang'));
     }
 
     /**
@@ -121,6 +136,8 @@ class AreaController extends Controller
      */
     public function update(Request $request, Area $area)
     {
+        $lang = $request->lang;
+
         $validator = Validator::make($request->all(),
         [
             'title' => ['required', 'string', 'min:3', 'max:128'],
@@ -149,7 +166,7 @@ class AreaController extends Controller
         }
  
         $area->save();
-        return redirect()->route('area.index')->with('success_message', 'You are successfully edit area: ' . $area->title);
+        return redirect()->route('area.index', $lang)->with('success_message', 'You are successfully edit area: ' . $area->title);
     }
 
     /**
@@ -158,12 +175,14 @@ class AreaController extends Controller
      * @param  \App\Models\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Area $area)
+    public function destroy(Area $area, Request $request)
     {
+        $lang = $request->lang;
+
         if($area->areaPosts->count()){
-            return redirect()->route('area.index')->with('info_message', 'You can\'t delete area because it have a posts'); 
+            return redirect()->route('area.index', $lang)->with('info_message', 'You can\'t delete area because it have a posts'); 
         }
         $area->delete();
-        return redirect()->route('area.index')->with('success_message', 'You are successfully delete area: ' . $area->title);
+        return redirect()->route('area.index', $lang)->with('success_message', 'You are successfully delete area: ' . $area->title);
     }
 }

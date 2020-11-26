@@ -10,9 +10,11 @@ use PDF;
 
 class PostController extends Controller
 {
-    public function __construct()
+    public function __construct(Request $request)
     {
         $this->middleware('auth');
+        $lang = $request->lang;
+        $this->middleware("setLanguage:$lang");
     }
     /**
      * Display a listing of the resource.
@@ -21,6 +23,8 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
+        $lang = $request->lang;
+
         $areas = Area::orderBy('title')->get();
 
         $area_id = $search = '';
@@ -34,18 +38,18 @@ class PostController extends Controller
 
         if($search) {
             $posts = $area_id ? 
-            Post::where('area_id', $area_id)->where('title', 'LIKE', "%".$search."%")->orderBy('title')->paginate(5) : 
-            Post::where('title', 'LIKE', "%".$search."%")->orderBy('title')->paginate(5);
+            Post::where('area_id', $area_id)->where('title', 'LIKE', "%".$search."%")->orderBy('title')->paginate(5)->appends(['area_id' => $area_id, 'search' => $search]) : 
+            Post::where('title', 'LIKE', "%".$search."%")->orderBy('title')->paginate(5)->appends(['search' => $search]);
         } else {
             $posts = $area_id ? 
-            Post::where('area_id', $area_id)->orderBy('title')->paginate(5) : 
+            Post::where('area_id', $area_id)->orderBy('title')->paginate(5)->appends(['area_id' => $area_id]) : 
             Post::orderBy('title')->paginate(5);
         }
 
         foreach($posts as $post) {
             $post->postAreaName = $post->postArea->title;
         }
-        return view('post.index', compact('posts', 'areas', 'area_id', 'search')); 
+        return view('post.index', compact('posts', 'areas', 'area_id', 'search', 'lang')); 
     }
 
     /**
@@ -53,10 +57,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $lang = $request->lang;
+
         $areas = Area::all();
-        return view('post.create', compact('areas'));
+        return view('post.create', compact('areas', 'lang'));
     }
 
     /**
@@ -67,6 +73,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $lang = $request->lang;
+
         $validator = Validator::make($request->all(),
         [
             'title' => ['required', 'min:3', 'max:128'],
@@ -104,7 +112,7 @@ class PostController extends Controller
              $post->photo = $name;
         }
         $post->save();
-        return redirect()->route('post.index')->with('success_message', 'You are successfully add new post: ' . $post->title);
+        return redirect()->route('post.index', $lang)->with('success_message', 'You are successfully add new post: ' . $post->title);
     }
 
     /**
@@ -113,10 +121,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Post $post, Request $request)
     {
+        $lang = $request->lang;
+
         $post->postAreaTitle = $post->postArea->title;
-        return view('post.show', compact('post'));
+        return view('post.show', compact('post', 'lang'));
     }
 
     /**
@@ -126,17 +136,21 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function pdf(Post $post)
+    public function pdf(Post $post, Request $request)
     {
+        $lang = $request->lang;
+
         $post->postAreaTitle = $post->postArea->title;
-        $pdf = PDF::loadView('post.pdf', compact('post'));
+        $pdf = PDF::loadView('post.pdf', compact('post', 'lang'));
         return $pdf->download($post->title.'-'.$post->id.'.pdf');
     }
     
-    public function edit(Post $post)
+    public function edit(Post $post, Request $request)
     {
+        $lang = $request->lang;
+
         $areas = Area::all();
-        return view('post.edit', compact('post', 'areas'));
+        return view('post.edit', compact('post', 'areas', 'lang'));
     }
 
     /**
@@ -148,6 +162,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $lang = $request->lang;
+
         $validator = Validator::make($request->all(),
         [
             'title' => ['required', 'min:3', 'max:128'],
@@ -183,7 +199,7 @@ class PostController extends Controller
              $post->photo = $name;
         }
         $post->save();
-        return redirect()->route('post.index')->with('success_message', 'You are successfully edit post: ' . $post->title);
+        return redirect()->route('post.index', $lang)->with('success_message', 'You are successfully edit post: ' . $post->title);
     }
 
     /**
@@ -192,9 +208,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post, Request $request)
     {
+        $lang = $request->lang;
+
         $post->delete();
-        return redirect()->route('post.index')->with('success_message', 'You are successfully delete post: ' . $post->task_name);
+        return redirect()->route('post.index', $lang)->with('success_message', 'You are successfully delete post: ' . $post->task_name);
     }
 }

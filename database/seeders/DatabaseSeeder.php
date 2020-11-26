@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
         // Sukuriam fake posts IT
-        $posts =  array('PHP Developer', '.NET Developer', 'React Developer', 'Angular developer', 'Java Developer');
+        $posts =  array('PHP Developer', '.NET Developer', 'React Developer', 'Angular developer', 'Java Developer', 'MID PHP Developer', 'Senior PHP Developer', 'Junior PHP Developer');
         foreach ($posts as $post) {
             DB::table('posts')->insert([
                 'title' => $post,

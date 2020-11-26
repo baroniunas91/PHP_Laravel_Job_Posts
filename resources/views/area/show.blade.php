@@ -49,20 +49,20 @@
 }
 </style>
 
-<h1>Area: {{$area->title}}</h1>
+<h1>{{__('area_show.main_title')}} {{$area->title}}</h1>
 <div class="container">
 @foreach ($area->postsList as $post)
     <div class="book-section">
-        <p><span>Post title:</span> {{$post->title}}</p>
-        <p><span>Post description:</span> {!!$post->description!!}</p>
-        <p><span>Salary:</span> {{$post->salary}}</p>
-        <p><span>Area ID:</span> {{$post->area_id}}</p>
+        <p><span>{{__('area_show.post_title')}}</span> {{$post->title}}</p>
+        <p><span>{{__('area_show.post_description')}}</span> {!!$post->description!!}</p>
+        <p><span>{{__('area_show.post_salary')}}</span> {{$post->salary}}</p>
+        <p><span>{{__('area_show.area_id')}}</span> {{$post->area_id}}</p>
     </div>
 @endforeach
 </div>
 <div class="download-section">
-    <a class="download" href="{{route('area.pdf', $area)}}">Download</a>
+    <a class="download" href="{{route('area.pdf', compact('area', 'lang'))}}">{{__('area_show.download')}}</a>
 </div>
 <div class="download-section">
-    <a class="download" href="{{route('area.index')}}">Back to areas</a>
+    <a class="download" href="{{route('area.index', $lang)}}">{{__('area_show.back')}}</a>
 </div>

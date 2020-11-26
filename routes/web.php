@@ -20,27 +20,27 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return redirect()->route('post.index');
+    return redirect()->route('post.index', 'en');
 })->name('dashboard');
 
 Route::group(['prefix' => 'areas'], function(){
-    Route::get('', [AreaController::class, 'index'])->name('area.index');
-    Route::get('create', [AreaController::class, 'create'])->name('area.create');
-    Route::post('store', [AreaController::class, 'store'])->name('area.store');
-    Route::get('edit/{area}', [AreaController::class, 'edit'])->name('area.edit');
-    Route::put('update/{area}', [AreaController::class, 'update'])->name('area.update');
-    Route::delete('delete/{area}', [AreaController::class, 'destroy'])->name('area.destroy');
-    Route::get('show/{area}', [AreaController::class, 'show'])->name('area.show');
-    Route::get('pdf/{area}', [AreaController::class, 'pdf'])->name('area.pdf');
+    Route::get('/{lang}', [AreaController::class, 'index'])->name('area.index');
+    Route::get('create/{lang}', [AreaController::class, 'create'])->name('area.create');
+    Route::post('store/{lang}', [AreaController::class, 'store'])->name('area.store');
+    Route::get('edit/{area}/{lang}', [AreaController::class, 'edit'])->name('area.edit');
+    Route::put('update/{area}/{lang}', [AreaController::class, 'update'])->name('area.update');
+    Route::delete('delete/{area}/{lang}', [AreaController::class, 'destroy'])->name('area.destroy');
+    Route::get('show/{area}/{lang}', [AreaController::class, 'show'])->name('area.show');
+    Route::get('pdf/{area}/{lang}', [AreaController::class, 'pdf'])->name('area.pdf');
 });
  
 Route::group(['prefix' => 'posts'], function(){
-    Route::get('', [PostController::class, 'index'])->name('post.index');
-    Route::get('create', [PostController::class, 'create'])->name('post.create');
-    Route::post('store', [PostController::class, 'store'])->name('post.store');
-    Route::get('edit/{post}', [PostController::class, 'edit'])->name('post.edit');
-    Route::put('update/{post}', [PostController::class, 'update'])->name('post.update');
-    Route::delete('delete/{post}', [PostController::class, 'destroy'])->name('post.destroy');
-    Route::get('show/{post}', [PostController::class, 'show'])->name('post.show');
-    Route::get('pdf/{post}', [PostController::class, 'pdf'])->name('post.pdf');
+    Route::get('/{lang}', [PostController::class, 'index'])->name('post.index');
+    Route::get('create/{lang}', [PostController::class, 'create'])->name('post.create');
+    Route::post('store/{lang}', [PostController::class, 'store'])->name('post.store');
+    Route::get('edit/{post}/{lang}', [PostController::class, 'edit'])->name('post.edit');
+    Route::put('update/{post}/{lang}', [PostController::class, 'update'])->name('post.update');
+    Route::delete('delete/{post}/{lang}', [PostController::class, 'destroy'])->name('post.destroy');
+    Route::get('show/{post}/{lang}', [PostController::class, 'show'])->name('post.show');
+    Route::get('pdf/{post}/{lang}', [PostController::class, 'pdf'])->name('post.pdf');
 });

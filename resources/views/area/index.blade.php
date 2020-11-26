@@ -1,21 +1,21 @@
 @extends('layouts.header')
 
 @section('title')
-Areas list
+{{__('area_index.main_title')}}
 @endsection
 
 @section('content')
 
 @section('content')
 <div class="index-container">
-    <h2 class="page-title">Areas List</h2>
+    <h2 class="page-title">{{__('area_index.main_title')}}</h2>
     <ul class="items-list">
         @foreach ($areas as $area)
         <li class="row">
             <div class="user-info">
-                <a class="title" href="{{route('area.edit', $area)}}">{{$area->title}}<span>Posts count: {{$area->postsCount}}</span>
+                <a class="title" href="{{route('area.show', compact('area', 'lang'))}}">{{$area->title}}<span>{{__('area_index.posts_count')}} {{$area->postsCount}}</span>
                 @foreach($area->postsList as $post)
-                <span>Post title: {{$post->title}}</span>
+                <span>{{__('area_index.posts_title')}} {{$post->title}}</span>
                 @endforeach
                 </a>
                 @if($area->photo) 
@@ -25,12 +25,12 @@ Areas list
                 @endif
             </div>
             <div class="buttons">
-                <div class="show">
-                    <a class="button" href="{{route('area.show', $area)}}">Show</a>
+                <div class="edit">
+                    <a class="button" href="{{route('area.edit', compact('area', 'lang'))}}">{{__('area_index.edit_button')}}</a>
                 </div>
-                <form method="POST" action="{{route('area.destroy', $area)}}">
+                <form method="POST" action="{{route('area.destroy', compact('area', 'lang'))}}">
                     {{method_field('DELETE')}}
-                    <button class="button" type="submit">DELETE</button>
+                    <button class="button" type="submit">{{__('area_index.delete_button')}}</button>
                     @csrf
                 </form>
             </div>

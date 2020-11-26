@@ -49,18 +49,18 @@
 }
 </style>
 
-<h1>Post: {{$post->title}}</h1>
+<h1>{{__('post_show.main_title')}} {{$post->title}}</h1>
 <div class="container">
     <div class="book-section">
-        <p><span>Post title:</span> {{$post->title}}</p>
-        <p><span>Post description:</span> {!!$post->description!!}</p>
-        <p><span>Post salary:</span> {{$post->salary}} Eur</p>
-        <p><span>Post area:</span> {{$post->postAreaTitle}}</p>
+        <p><span>{{__('post_show.post_title')}}</span> {{$post->title}}</p>
+        <p><span>{{__('post_show.post_description')}}</span> {!!$post->description!!}</p>
+        <p><span>{{__('post_show.salary')}}</span> {{$post->salary}} Eur</p>
+        <p><span>{{__('post_show.area')}}</span> {{$post->postAreaTitle}}</p>
     </div>
 </div>
 <div class="download-section">
-    <a class="download" href="{{route('post.pdf', $post)}}">Download</a>
+    <a class="download" href="{{route('post.pdf', compact('post', 'lang'))}}">{{__('post_show.download')}}</a>
 </div>
 <div class="download-section">
-    <a class="download" href="{{route('post.index')}}">Back to posts</a>
+    <a class="download" href="{{route('post.index', $lang)}}">{{__('post_show.back')}}</a>
 </div>

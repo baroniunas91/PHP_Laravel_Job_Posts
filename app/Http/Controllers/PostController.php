@@ -80,7 +80,8 @@ class PostController extends Controller
             'title' => ['required', 'min:3', 'max:128'],
             'description' => ['required', 'not_regex:/<p><br><\/p>/i'],
             'salary' => ['required', 'integer', 'min:1'],
-            'area_id' => ['required', 'integer', 'min:1', 'max:1000']
+            'area_id' => ['required', 'integer', 'min:1', 'max:1000'],
+            'photo' => ['image', 'max:2048'],
         ],
         [
             'description.not_regex' => 'Post description field should not be empty!',
@@ -169,7 +170,8 @@ class PostController extends Controller
             'title' => ['required', 'min:3', 'max:128'],
             'description' => ['required', 'not_regex:/<p><br><\/p>/i'],
             'salary' => ['required', 'integer', 'min:1'],
-            'area_id' => ['required', 'integer', 'min:1', 'max:1000']
+            'area_id' => ['required', 'integer', 'min:1', 'max:1000'],
+            'photo' => ['image', 'max:2048'],
         ],
         [
             'description.not_regex' => 'Post description field should not be empty!',

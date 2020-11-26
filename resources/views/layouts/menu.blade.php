@@ -11,8 +11,8 @@
     </div>
     <div class="right">
         <div class="language">
-            <a class="en" href="{{route('post.index', 'en')}}">EN</a>
-            <a class="lt" href="{{route('post.index', 'lt')}}">LT</a>
+        <a class="en" href="{{substr(url()->current(), 0, -2) . 'en'}}">EN</a>
+            <a class="lt" href="{{substr(url()->current(), 0, -2) . 'lt'}}">LT</a>
         </div>
         <form id="logout-form" action="{{ route('logout') }}" method="POST">
             @csrf

@@ -59,6 +59,7 @@ class AreaController extends Controller
         $validator = Validator::make($request->all(),
         [
             'title' => ['required', 'string', 'min:3', 'max:128'],
+            'photo' => ['image', 'max:2048']
         ]
         );
  
@@ -78,7 +79,7 @@ class AreaController extends Controller
              //    failo vardas
             $name = $request->file('photo')->getClientOriginalName();
              //    sugeneruojam path, kur dėsim failus
-             $destinationPath = public_path('/images');
+            $destinationPath = public_path('/images');
              // perkeliu nuotrauką į sugeneruotą kelią ir palieku jam originalų vardą
              $image->move($destinationPath, $name);
              // į DB įrašau tik vardą failo
@@ -141,6 +142,7 @@ class AreaController extends Controller
         $validator = Validator::make($request->all(),
         [
             'title' => ['required', 'string', 'min:3', 'max:128'],
+            'photo' => ['image', 'max:2048'],
         ]
         );
  

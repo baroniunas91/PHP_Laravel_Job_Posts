@@ -22,7 +22,7 @@
       </div>
       <div class="search">
         <label>{{__('post_index.search')}}</label>
-        <input type="text" name="search" value = "@if($search) {{$search}} @endif" placeholder="{{__('post_index.keyword')}}">
+        <input type="text" name="search" value = "@if($search){{$search}}@endif" placeholder="{{__('post_index.keyword')}}">
       </div>
         <div class="submit">
         <button class="button" type="submit">{{__('post_index.filter_button')}}</button>
